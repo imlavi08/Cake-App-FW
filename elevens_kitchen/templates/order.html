@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Signature Creations – 11's Kitchen</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/order.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand" id="nav-brand">
+        <a href="/" class="brand-link" id="nav-home-link">
+          <span class="brand-icon">🎂</span>
+          <span class="brand-name">11's Kitchen</span>
+        </a>
+      </div>
+      <div class="nav-tagline" id="nav-tagline">Eggless &amp; Vegan Specialists</div>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero" id="page-hero">
+    <div class="page-hero-content" id="page-hero-content">
+      <h1 class="page-title" id="page-title">Our Signature Creations</h1>
+      <p class="page-subtitle" id="page-subtitle">
+        Handcrafted cakes and baked delights made with premium ingredients
+        and personalized for every celebration.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY SECTION ========== -->
+  <section class="gallery-section" id="gallery-section">
+    <div class="section-container">
+      <h2 class="section-heading" id="gallery-heading">Gallery</h2>
+
+      {% if gallery_images %}
+      <div class="slideshow-wrapper" id="slideshow-wrapper">
+
+        <!-- Slides -->
+        <div class="slideshow" id="slideshow" aria-label="Cake gallery slideshow">
+          {% for img in gallery_images %}
+          <div class="slide" id="slide-{{ loop.index }}" role="img" aria-label="Gallery image {{ loop.index }}" {% if not loop.first %}style="display:none;"{% endif %}>
+            <img
+              src="{{ url_for('static', filename='images/' ~ img) }}"
+              alt="11's Kitchen creation {{ loop.index }}"
+              class="slide-img"
+              loading="lazy"
+              id="slide-img-{{ loop.index }}"
+            />
+          </div>
+          {% endfor %}
+
+          <!-- Arrows -->
+          <button class="slide-arrow arrow-prev" id="arrow-prev" aria-label="Previous slide">&#10094;</button>
+          <button class="slide-arrow arrow-next" id="arrow-next" aria-label="Next slide">&#10095;</button>
+
+          <!-- Slide counter -->
+          <div class="slide-counter" id="slide-counter" aria-live="polite">
+            <span id="slide-current">1</span> / <span id="slide-total">{{ gallery_images | length }}</span>
+          </div>
+        </div>
+
+        <!-- Dot indicators -->
+        <div class="slide-dots" id="slide-dots" role="tablist" aria-label="Slide indicators">
+          {% for img in gallery_images %}
+          <button
+            class="dot {% if loop.first %}dot-active{% endif %}"
+            id="dot-{{ loop.index }}"
+            role="tab"
+            aria-label="Go to slide {{ loop.index }}"
+            aria-selected="{% if loop.first %}true{% else %}false{% endif %}"
+            data-index="{{ loop.index0 }}"
+          ></button>
+          {% endfor %}
+        </div>
+
+      </div>
+      {% else %}
+      <p class="gallery-empty" id="gallery-empty">
+        Gallery coming soon — check back shortly!
+      </p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- ========== FRESH FROM KITCHEN ========== -->
+  <section class="menu-section" id="menu-section">
+    <div class="section-container">
+      <h2 class="section-heading" id="menu-heading">Fresh from our Kitchen</h2>
+      <p class="section-subheading" id="menu-subheading">
+        Choose a category to explore and place your order.
+      </p>
+
+      <div class="menu-grid" id="menu-grid">
+
+        <!-- Custom Cakes -->
+        <a class="menu-card menu-card-link" id="menu-custom-cake" href="/custom-cake" aria-label="Custom Cakes - Start Order">
+          <div class="menu-card-inner">
+            <div class="menu-emoji" aria-hidden="true">🎂</div>
+            <h3 class="menu-name" id="menu-name-custom">Custom Cakes</h3>
+            <p class="menu-occasions" id="menu-occasions-custom">
+              Birthdays &nbsp;·&nbsp; Anniversaries &nbsp;·&nbsp; Weddings
+            </p>
+            <span class="menu-badge start-order-badge" id="badge-custom">Start Order</span>
+          </div>
+        </a>
+
+        <!-- Cupcakes -->
+        <div class="menu-card" id="menu-cupcakes" data-category="cupcakes" tabindex="0" role="button" aria-label="Cupcakes - coming soon">
+          <div class="menu-card-inner">
+            <div class="menu-emoji" aria-hidden="true">🧁</div>
+            <h3 class="menu-name" id="menu-name-cupcakes">Cupcakes</h3>
+            <p class="menu-occasions" id="menu-occasions-cupcakes">
+              Perfect for gifting &amp; parties
+            </p>
+            <span class="menu-badge start-order-badge" id="badge-cupcakes">Start Order</span>
+          </div>
+        </div>
+
+        <!-- Brownies -->
+        <div class="menu-card" id="menu-brownies" data-category="brownies" tabindex="0" role="button" aria-label="Brownies - coming soon">
+          <div class="menu-card-inner">
+            <div class="menu-emoji" aria-hidden="true">🍫</div>
+            <h3 class="menu-name" id="menu-name-brownies">Brownies</h3>
+            <p class="menu-occasions" id="menu-occasions-brownies">
+              Rich, fudgy &amp; irresistible
+            </p>
+            <span class="menu-badge start-order-badge" id="badge-brownies">Start Order</span>
+          </div>
+        </div>
+
+        <!-- Mawa Cake -->
+        <div class="menu-card" id="menu-mawa-cake" data-category="mawa-cake" tabindex="0" role="button" aria-label="Mawa Cake - coming soon">
+          <div class="menu-card-inner">
+            <div class="menu-emoji" aria-hidden="true">🥛</div>
+            <h3 class="menu-name" id="menu-name-mawa">Mawa Cake</h3>
+            <p class="menu-occasions" id="menu-occasions-mawa">
+              A classic traditional delight
+            </p>
+            <span class="menu-badge start-order-badge" id="badge-mawa">Start Order</span>
+          </div>
+        </div>
+
+        <!-- Plum Cake -->
+        <div class="menu-card" id="menu-plum-cake" data-category="plum-cake" tabindex="0" role="button" aria-label="Plum Cake - coming soon">
+          <div class="menu-card-inner">
+            <div class="menu-emoji" aria-hidden="true">🍇</div>
+            <h3 class="menu-name" id="menu-name-plum">Plum Cake</h3>
+            <p class="menu-occasions" id="menu-occasions-plum">
+              Festive, rich &amp; full of flavour
+            </p>
+            <span class="menu-badge start-order-badge" id="badge-plum">Start Order</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMING SOON TOAST ========== -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    🍰 This product's order form is coming soon!
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-brand" id="footer-brand">
+        <span class="footer-icon">🎂</span>
+        <span class="footer-name">11's Kitchen</span>
+      </div>
+      <p class="footer-tagline" id="footer-tagline">Specializing in Eggless &amp; Vegan Cakes</p>
+      <p class="footer-phone" id="footer-phone">
+        📞 <a href="tel:+918925203256">+91 89252 03256</a>
+      </p>
+      <p class="footer-copy" id="footer-copyright">
+        &copy; 2026 11's Kitchen. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/slideshow.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/order.js') }}"></script>
+</body>
+</html>

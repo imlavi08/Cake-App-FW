@@ -1,0 +1,339 @@
+/* =============================================
+   11's Kitchen – Order / Creations Page Styles
+   ============================================= */
+
+/* ========== NAV BRAND LINK ========== */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+/* ========== PAGE HERO ========== */
+.page-hero {
+  background: linear-gradient(135deg, #fff0f3 0%, #fce4ec 50%, #f8bbd0 100%);
+  padding: 120px 24px 60px;   /* 120px = ~60px navbar + 60px content breathing room */
+  text-align: center;
+  border-bottom: 1px solid rgba(232, 99, 122, 0.15);
+}
+
+.page-hero-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brown-dark);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--text-mid);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+/* ========== SHARED SECTION STYLES ========== */
+.section-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--brown-dark);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.section-subheading {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+/* ========== GALLERY / SLIDESHOW ========== */
+.gallery-section {
+  padding: 70px 0 60px;
+  background: var(--cream);
+}
+
+.gallery-section .section-heading {
+  margin-bottom: 36px;
+}
+
+.slideshow-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  background: #f5f0eb;
+}
+
+.slide {
+  width: 100%;
+  display: none;
+  text-align: center;
+}
+
+.slide:first-child {
+  display: block;
+}
+
+.slide-img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  transition: opacity 0.5s ease;
+}
+
+/* Arrows */
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--brown-dark);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.slide-arrow:hover {
+  background: var(--white);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrow-prev { left: 12px; }
+.arrow-next { right: 12px; }
+
+/* Slide counter */
+.slide-counter {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  z-index: 10;
+}
+
+/* Dots */
+.slide-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(232, 99, 122, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  padding: 0;
+}
+
+.dot:hover {
+  background: rgba(232, 99, 122, 0.6);
+}
+
+.dot-active {
+  background: var(--pink-primary);
+  transform: scale(1.3);
+}
+
+.gallery-empty {
+  text-align: center;
+  color: var(--text-light);
+  font-style: italic;
+  padding: 40px 0;
+}
+
+/* ========== MENU / FRESH FROM KITCHEN ========== */
+.menu-section {
+  padding: 70px 0 80px;
+  background: var(--white);
+  border-top: 1px solid var(--pink-light);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.menu-card {
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(232, 99, 122, 0.12);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  outline: none;
+}
+
+.menu-card:hover,
+.menu-card:focus {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--pink-primary);
+}
+
+.menu-card-inner {
+  padding: 32px 20px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-emoji {
+  font-size: 3rem;
+}
+
+.menu-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brown-dark);
+}
+
+.menu-occasions {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.menu-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.coming-soon-badge {
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  border: 1px solid rgba(194, 24, 91, 0.2);
+}
+
+.start-order-badge {
+  background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+  color: var(--white);
+  border: none;
+}
+
+/* Menu card as anchor link */
+.menu-card-link {
+  text-decoration: none;
+  display: block;
+}
+
+/* ========== TOAST ========== */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--brown-dark);
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.toast-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 100px 16px 48px;
+  }
+
+  .slideshow {
+    border-radius: var(--radius-md);
+  }
+
+  .slide-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .menu-card-inner {
+    padding: 22px 14px 18px;
+  }
+
+  .menu-emoji {
+    font-size: 2.2rem;
+  }
+
+  .toast {
+    font-size: 0.82rem;
+    padding: 12px 20px;
+    white-space: normal;
+    text-align: center;
+    width: 85%;
+  }
+}

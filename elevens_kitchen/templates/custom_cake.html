@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Cake Order – 11's Kitchen</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_cake.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand" id="nav-brand">
+        <a href="/" class="brand-link" id="nav-home-link">
+          <span class="brand-icon">🎂</span>
+          <span class="brand-name">11's Kitchen</span>
+        </a>
+      </div>
+      <div class="nav-tagline" id="nav-tagline">Eggless &amp; Vegan Specialists</div>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero" id="page-hero">
+    <div class="page-hero-content" id="page-hero-content">
+      <p class="breadcrumb" id="breadcrumb">
+        <a href="/order" id="breadcrumb-back">← Our Creations</a>
+      </p>
+      <h1 class="page-title" id="page-title">Custom Cake Order</h1>
+      <p class="page-subtitle" id="page-subtitle">
+        Tell us about your dream cake — we'll make it happen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== ORDER FORM ========== -->
+  <main class="form-main" id="form-main">
+    <form class="order-form" id="custom-cake-form" novalidate>
+
+      <!-- ════════════════════════════════════
+           SECTION 1 – FLAVOUR & PRICE
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-flavour">
+        <h2 class="form-section-title" id="title-flavour">
+          <span class="section-number">1</span> Choose Your Flavour
+        </h2>
+
+        <div class="form-row" id="row-flavour">
+          <div class="form-group" id="group-flavour">
+            <label class="form-label" for="cake-flavour">Flavour <span class="required">*</span></label>
+            <select class="form-control" id="cake-flavour" name="cake_flavour" required>
+              <option value="" disabled selected>-- Select a flavour --</option>
+              <optgroup label="✨ Premium Flavours">
+                <option value="vanilla_tres_leches" data-price="1150">Vanilla Tres Leches</option>
+                <option value="lemon"               data-price="1250">Lemon</option>
+                <option value="tender_coconut"      data-price="1250">Tender Coconut</option>
+                <option value="caramel_salted"      data-price="1275">Caramel / Salted Caramel</option>
+                <option value="coffee_caramel"      data-price="1300">Coffee Caramel</option>
+                <option value="mocha"               data-price="1300">Mocha</option>
+                <option value="tiramisu"            data-price="1350">Tiramisu Cake</option>
+                <option value="boston_cream_pie"    data-price="1400">Boston Cream Pie</option>
+                <option value="red_velvet"          data-price="1400">Red Velvet</option>
+                <option value="rose_milk"           data-price="1450">Rose Milk</option>
+                <option value="snickers"            data-price="1650">Snickers Cake</option>
+                <option value="ras_malai_without"   data-price="1650">Ras Malai (without malai)</option>
+                <option value="ras_malai_with"      data-price="1750">Ras Malai (with malai)</option>
+                <option value="belgian_chocolate"   data-price="1950">Belgian Chocolate</option>
+                <option value="nutella_truffle"     data-price="1950">Nutella Truffle</option>
+                <option value="pistachio"           data-price="1950">Pistachio</option>
+                <option value="rose_pistachio"      data-price="1950">Rose Pistachio</option>
+                <option value="opera"               data-price="2700">OPERA Cake</option>
+              </optgroup>
+              <optgroup label="🍰 Basic Flavours">
+                <option value="butterscotch"        data-price="950">Butterscotch</option>
+                <option value="mango"               data-price="950">Mango</option>
+                <option value="pineapple"           data-price="950">Pineapple</option>
+                <option value="strawberry"          data-price="950">Strawberry</option>
+                <option value="blackcurrant"        data-price="950">Blackcurrant</option>
+                <option value="classic_chocolate"   data-price="1150">Classic Chocolate</option>
+                <option value="black_forest"        data-price="1250">Black Forest</option>
+                <option value="white_forest"        data-price="1250">White Forest</option>
+                <option value="chocolate_truffle"   data-price="1500">Chocolate Truffle</option>
+              </optgroup>
+            </select>
+            <span class="field-error" id="error-flavour" role="alert"></span>
+          </div>
+
+          <!-- Starting price display -->
+          <div class="price-display" id="price-display" style="display:none;">
+            <span class="price-label" id="price-label">Starting Price (800 g)</span>
+            <span class="price-value" id="price-value">₹0</span>
+          </div>
+        </div>
+
+        <!-- Flavour restriction note -->
+        <p class="info-note restriction-note" id="flavour-restriction-note" style="display:none;">
+          ⚠️ <span id="flavour-restriction-text">This flavour is available only in standard cake designs.</span>
+        </p>
+
+        <!-- Pricing notice -->
+        <div class="info-box pricing-notice" id="pricing-notice">
+          <p>💡 <strong>Pricing Notice</strong><br />
+          <em>Prices update automatically based on your selected flavour, cake size, Vegan option and Buttercream option.</em></p>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 2 – BUTTERCREAM
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-buttercream">
+        <h2 class="form-section-title" id="title-buttercream">
+          <span class="section-number">2</span> Buttercream?
+        </h2>
+        <div class="radio-group" id="group-buttercream" role="radiogroup" aria-labelledby="title-buttercream">
+          <label class="radio-label" id="label-buttercream-no">
+            <input type="radio" name="buttercream" id="buttercream-no" value="no" checked />
+            <span class="radio-custom"></span> No
+          </label>
+          <label class="radio-label" id="label-buttercream-yes">
+            <input type="radio" name="buttercream" id="buttercream-yes" value="yes" />
+            <span class="radio-custom"></span> Yes
+          </label>
+        </div>
+        <div class="info-box buttercream-info-box" id="buttercream-info" style="display:none;">
+          <p id="buttercream-info-text">🧈 <strong>Buttercream Add-on:</strong> +₹300 for first kg, +₹200 for every additional kg. Price updated automatically.</p>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 3 – VEGAN
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-vegan">
+        <h2 class="form-section-title" id="title-vegan">
+          <span class="section-number">3</span> Vegan?
+        </h2>
+        <div class="radio-group" id="group-vegan" role="radiogroup" aria-labelledby="title-vegan">
+          <label class="radio-label" id="label-vegan-no">
+            <input type="radio" name="vegan" id="vegan-no" value="no" checked />
+            <span class="radio-custom"></span> No
+          </label>
+          <label class="radio-label" id="label-vegan-yes">
+            <input type="radio" name="vegan" id="vegan-yes" value="yes" />
+            <span class="radio-custom"></span> Yes
+          </label>
+        </div>
+
+        <!-- Vegan restriction note -->
+        <p class="info-note restriction-note" id="vegan-restriction-note" style="display:none;">
+          ⚠️ This flavour/design is currently unavailable as a Vegan cake.
+        </p>
+
+        <!-- Vegan active note -->
+        <div class="info-box vegan-note" id="vegan-note" style="display:none;">
+          <p id="vegan-note-text">🌱 <strong>Vegan Add-on:</strong> +₹500/kg for Rosemilk, Vanilla Tres Leches, Rasmalai &amp; Tender Coconut. +₹100/kg for all other flavours. Price updated automatically.</p>
+        </div>
+
+        <p class="price-disclaimer" id="price-disclaimer">
+          * Prices displayed are starting prices for 800 g cakes. Final pricing may vary depending on customization.
+        </p>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 4 – TIERED CAKE
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-tiered">
+        <h2 class="form-section-title" id="title-tiered">
+          <span class="section-number">4</span> Tiered Cake?
+        </h2>
+        <div class="radio-group" id="group-tiered" role="radiogroup" aria-labelledby="title-tiered">
+          <label class="radio-label" id="label-tiered-no">
+            <input type="radio" name="tiered_cake" id="tiered-no" value="no" checked />
+            <span class="radio-custom"></span> No
+          </label>
+          <label class="radio-label" id="label-tiered-yes">
+            <input type="radio" name="tiered_cake" id="tiered-yes" value="yes" />
+            <span class="radio-custom"></span> Yes
+          </label>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 5 – SHAPE
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-shape">
+        <h2 class="form-section-title" id="title-shape">
+          <span class="section-number">5</span> Shape
+        </h2>
+        <div class="form-group" id="group-shape">
+          <label class="form-label" for="cake-shape">Cake Shape <span class="required">*</span></label>
+          <select class="form-control" id="cake-shape" name="cake_shape" required>
+            <option value="" disabled selected>-- Select a shape --</option>
+            <option value="circle"  id="shape-circle">Circle</option>
+            <option value="square"  id="shape-square">Square</option>
+            <option value="heart"   id="shape-heart">Heart</option>
+            <option value="hexagon" id="shape-hexagon">Hexagon</option>
+            <option value="doll"    id="shape-doll">Doll</option>
+            <option value="custom"  id="shape-custom">Custom</option>
+          </select>
+          <span class="field-error" id="error-shape" role="alert"></span>
+        </div>
+
+        <!-- Doll minimum size note -->
+        <p class="info-note" id="doll-shape-note" style="display:none;">
+          🪆 Doll cakes require a minimum size of 1 kg.
+        </p>
+
+        <!-- Custom shape text box -->
+        <div class="form-group" id="group-custom-shape" style="display:none;">
+          <label class="form-label" for="custom-shape-desc">Describe your preferred shape <span class="required">*</span></label>
+          <input type="text" class="form-control" id="custom-shape-desc" name="custom_shape_desc"
+            placeholder="e.g. Number 1, Star, Guitar..." maxlength="100" />
+          <span class="field-error" id="error-custom-shape" role="alert"></span>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 6 – SIZE
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-size">
+        <h2 class="form-section-title" id="title-size">
+          <span class="section-number">6</span> Size
+        </h2>
+        <div class="form-group" id="group-size">
+          <label class="form-label" for="cake-size">Cake Size <span class="required">*</span></label>
+          <select class="form-control" id="cake-size" name="cake_size" required>
+            <option value="800g"   id="size-800g">800 grams</option>
+            <option value="1kg"    id="size-1kg">1 kg</option>
+            <option value="1.5kg"  id="size-1-5kg">1.5 kg</option>
+            <option value="2kg"    id="size-2kg">2 kg</option>
+            <option value="2.5kg"  id="size-2-5kg">2.5 kg</option>
+            <option value="3kg"    id="size-3kg">3 kg</option>
+            <option value="custom" id="size-custom">Custom</option>
+          </select>
+          <span class="field-error" id="error-size" role="alert"></span>
+        </div>
+
+        <!-- Custom size text box -->
+        <div class="form-group" id="group-custom-size" style="display:none;">
+          <label class="form-label" for="custom-size-desc">Describe your size requirement <span class="required">*</span></label>
+          <input type="text" class="form-control" id="custom-size-desc" name="custom_size_desc"
+            placeholder="e.g. 4 kg, serves 50 people..." maxlength="100" />
+          <span class="field-error" id="error-custom-size" role="alert"></span>
+        </div>
+
+        <!-- Estimated total price -->
+        <div class="estimated-total" id="estimated-total" style="display:none;">
+          <div class="estimated-total-inner">
+            <span class="est-label" id="est-label">Estimated Total Price</span>
+            <span class="est-value" id="est-value">₹0</span>
+          </div>
+          <!-- Note shown for custom / tiered -->
+          <p class="est-note" id="est-note" style="display:none;">
+            <em>The displayed price is an approximate estimate. Final pricing for custom and tiered cakes will be discussed and confirmed by the baker.</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 7 – CAKE DESIGN PREFERENCE
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-design">
+        <h2 class="form-section-title" id="title-design">
+          <span class="section-number">7</span> Cake Design Preference
+        </h2>
+        <div class="radio-group" id="group-design-pref" role="radiogroup" aria-labelledby="title-design">
+          <label class="radio-label" id="label-bakers-choice">
+            <input type="radio" name="design_pref" id="design-bakers" value="bakers_creativity" checked />
+            <span class="radio-custom"></span> Baker's Creativity
+          </label>
+          <label class="radio-label" id="label-custom-design">
+            <input type="radio" name="design_pref" id="design-custom" value="custom_design" />
+            <span class="radio-custom"></span> Custom Design
+          </label>
+        </div>
+
+        <!-- Flavour restriction on design -->
+        <p class="info-note restriction-note" id="design-restriction-note" style="display:none;">
+          ⚠️ This flavour is available only in standard cake designs.
+        </p>
+
+        <!-- Custom design fields -->
+        <div id="custom-design-fields" style="display:none;">
+          <div class="form-group" id="group-design-desc">
+            <label class="form-label" for="design-desc">Theme / Design Description <span class="required">*</span></label>
+            <textarea class="form-control" id="design-desc" name="design_desc" rows="3"
+              placeholder="e.g. Pink floral theme with butterflies, lavender colour flowers..."></textarea>
+            <span class="field-error" id="error-design-desc" role="alert"></span>
+          </div>
+
+          <div class="form-group" id="group-ref-image">
+            <label class="form-label" for="ref-image">Upload Reference Image (optional)</label>
+            <input type="file" class="form-control file-input" id="ref-image" name="ref_image"
+              accept=".jpg,.jpeg,.png" />
+            <p class="input-hint" id="hint-ref-image">JPG, JPEG or PNG only · Maximum 10 MB</p>
+            <span class="field-error" id="error-ref-image" role="alert"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 8 – MESSAGE ON CAKE
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-message">
+        <h2 class="form-section-title" id="title-message">
+          <span class="section-number">8</span> Message on Cake
+        </h2>
+        <div class="form-group" id="group-message">
+          <label class="form-label" for="cake-message">Message (optional)</label>
+          <input type="text" class="form-control" id="cake-message" name="cake_message"
+            placeholder="e.g. Happy Birthday Priya!" maxlength="80" />
+          <p class="input-hint" id="hint-message">Maximum 10 words.</p>
+          <span class="field-error" id="error-message" role="alert"></span>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 9 – DATE OF DELIVERY
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-date">
+        <h2 class="form-section-title" id="title-date">
+          <span class="section-number">9</span> Date of Delivery
+        </h2>
+        <div class="form-group" id="group-date">
+          <label class="form-label" for="delivery-date">Delivery / Pickup Date <span class="required">*</span></label>
+          <input type="date" class="form-control" id="delivery-date" name="delivery_date" required />
+          <span class="field-error" id="error-date" role="alert"></span>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 10 – MODE OF DELIVERY
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-delivery">
+        <h2 class="form-section-title" id="title-delivery">
+          <span class="section-number">10</span> Mode of Delivery
+        </h2>
+        <div class="radio-group" id="group-delivery" role="radiogroup" aria-labelledby="title-delivery">
+          <label class="radio-label" id="label-self-pickup">
+            <input type="radio" name="delivery_mode" id="delivery-pickup" value="self_pickup" checked />
+            <span class="radio-custom"></span> Self Pickup
+          </label>
+          <label class="radio-label" id="label-delivery-needed">
+            <input type="radio" name="delivery_mode" id="delivery-needed" value="delivery_needed" />
+            <span class="radio-custom"></span> Delivery Needed
+          </label>
+        </div>
+
+        <!-- Self pickup only notice -->
+        <p class="info-note pickup-only-note" id="pickup-only-note" style="display:none;">
+          <em>This cake is available for Self Pickup only due to its size/design.</em>
+        </p>
+      </section>
+
+      <!-- ════════════════════════════════════
+           SECTION 11 – PREFERRED TIME
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-time">
+        <h2 class="form-section-title" id="title-time">
+          <span class="section-number">11</span> Preferred Delivery / Pickup Time
+        </h2>
+        <div class="form-group" id="group-time">
+          <label class="form-label" for="preferred-time">Preferred Time <span class="required">*</span></label>
+          <select class="form-control" id="preferred-time" name="preferred_time" required>
+            <option value="" disabled selected>-- Select a time --</option>
+            <option value="08:00 AM">8:00 AM</option>
+            <option value="08:30 AM">8:30 AM</option>
+            <option value="09:00 AM">9:00 AM</option>
+            <option value="09:30 AM">9:30 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="10:30 AM">10:30 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="11:30 AM">11:30 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="12:30 PM">12:30 PM</option>
+            <option value="01:00 PM">1:00 PM</option>
+            <option value="01:30 PM">1:30 PM</option>
+            <option value="02:00 PM">2:00 PM</option>
+            <option value="02:30 PM">2:30 PM</option>
+            <option value="03:00 PM">3:00 PM</option>
+            <option value="03:30 PM">3:30 PM</option>
+            <option value="04:00 PM">4:00 PM</option>
+            <option value="04:30 PM">4:30 PM</option>
+            <option value="05:00 PM">5:00 PM</option>
+            <option value="05:30 PM">5:30 PM</option>
+            <option value="06:00 PM">6:00 PM</option>
+            <option value="06:30 PM">6:30 PM</option>
+            <option value="07:00 PM">7:00 PM</option>
+            <option value="07:30 PM">7:30 PM</option>
+            <option value="08:00 PM">8:00 PM</option>
+          </select>
+          <span class="field-error" id="error-time" role="alert"></span>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           CUSTOMER DETAILS
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-customer">
+        <h2 class="form-section-title" id="title-customer">
+          <span class="section-number">✦</span> Your Details
+        </h2>
+
+        <div class="form-group" id="group-name">
+          <label class="form-label" for="customer-name">Customer Name <span class="required">*</span></label>
+          <input type="text" class="form-control" id="customer-name" name="customer_name"
+            placeholder="Full name" required maxlength="100" />
+          <span class="field-error" id="error-name" role="alert"></span>
+        </div>
+
+        <div class="form-group" id="group-email">
+          <label class="form-label" for="customer-email">Email Address <span class="required">*</span></label>
+          <input type="email" class="form-control" id="customer-email" name="customer_email"
+            placeholder="you@example.com" required maxlength="150" />
+          <span class="field-error" id="error-email" role="alert"></span>
+        </div>
+
+        <div class="form-group" id="group-phone">
+          <label class="form-label" for="customer-phone">Phone Number <span class="required">*</span></label>
+          <input type="tel" class="form-control" id="customer-phone" name="customer_phone"
+            placeholder="10-digit mobile number" required maxlength="10" pattern="\d{10}" />
+          <span class="field-error" id="error-phone" role="alert"></span>
+        </div>
+
+        <!-- Address – shown only for Delivery Needed -->
+        <div class="form-group" id="group-address" style="display:none;">
+          <label class="form-label" for="delivery-address">Delivery Address <span class="required">*</span></label>
+          <textarea class="form-control" id="delivery-address" name="delivery_address" rows="3"
+            placeholder="Full delivery address including landmark..."></textarea>
+          <span class="field-error" id="error-address" role="alert"></span>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════
+           CONFIRMATION & SUBMIT
+      ════════════════════════════════════ -->
+      <section class="form-section" id="section-submit">
+        <div class="form-group" id="group-confirm">
+          <label class="checkbox-label" id="label-confirm">
+            <input type="checkbox" id="confirm-checkbox" name="confirm" required />
+            <span class="checkbox-custom" id="checkbox-custom"></span>
+            <span class="checkbox-text" id="checkbox-text">I confirm that the above details are correct.</span>
+          </label>
+          <span class="field-error" id="error-confirm" role="alert"></span>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btn-submit-order">
+          Send Order Request 🍰
+        </button>
+
+        <p class="submit-note" id="submit-note">
+          <em>After submitting your request, we will contact you to discuss the design, confirm availability and finalize your order.</em>
+        </p>
+      </section>
+
+    </form>
+  </main>
+
+  <!-- ========== SUCCESS MODAL ========== -->
+  <div class="modal-overlay" id="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal" id="success-modal">
+      <div class="modal-icon">🎂</div>
+      <h2 class="modal-title" id="modal-title">Order Request Sent!</h2>
+      <p class="modal-body" id="modal-body">
+        Thank you for your order! Your request has been received successfully.<br /><br />
+        We will contact you shortly to confirm your order.
+      </p>
+      <a href="/" class="btn-order" id="modal-home-btn">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-brand" id="footer-brand">
+        <span class="footer-icon">🎂</span>
+        <span class="footer-name">11's Kitchen</span>
+      </div>
+      <p class="footer-tagline" id="footer-tagline">Specializing in Eggless &amp; Vegan Cakes</p>
+      <p class="footer-phone" id="footer-phone">
+        📞 <a href="tel:+918925203256">+91 89252 03256</a>
+      </p>
+      <p class="footer-copy" id="footer-copyright">
+        &copy; 2026 11's Kitchen. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/custom_cake.js') }}"></script>
+</body>
+</html>
